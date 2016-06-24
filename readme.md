@@ -16,7 +16,6 @@ Install Gulp Command Line Interface via NPM, then run in your project directory:
 ```
 npm init 
 npm install gulp jshint gulp-jshint jshint-stylish gulp-watch
-touch gulpfile.js
 ```
 Install bower packages (such as JQuery) by:
 ```
