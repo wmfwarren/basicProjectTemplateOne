@@ -22,4 +22,11 @@ Install bower packages (such as JQuery) by:
 ```
 bower install
 ```
+If you need to update packages run:
+```
+bower update
+```
 
+Editing this template:
+This is a very basic template, it will be updated from time to time. If you need, or want, to make it your own then feel free to fork it to your GitHub by:
+Click the "fork" button in the upper right-hand side of this repo on GitHub. You then navigate to your fork and run `git clone #your ssh url here` to make a local copy for yourself.  
