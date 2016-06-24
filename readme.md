@@ -18,7 +18,7 @@ npm init
 npm install gulp jshint gulp-jshint jshint-stylish gulp-watch
 touch gulpfile.js
 ```
-Install bower packages by:
+Install bower packages (such as JQuery) by:
 ```
 bower install
 ```
