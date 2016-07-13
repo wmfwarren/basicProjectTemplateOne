@@ -11,7 +11,7 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
-// var sass = require('gulp-sass');
+var sass = require('gulp-sass');
 
 var handleError = function(task) {
   return function(err) {
@@ -55,12 +55,22 @@ gulp.task('browserify', bundle);
   Not optional. You should always be validating your JavaScript
  */
 gulp.task('lint', function() {
-  return gulp.src(['./javascripts/**/*.js'])
+  return gulp.src(['./javascripts/**/*.js', './testing/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .on('error', function() { });
 });
 
+// jasmine section
+gulp.task('specs', function() {
+  return gulp.src('./testing/specs/*.js')
+    .pipe(jasmine({
+        reporter: new jasmineSpecReporter({
+        displayFailuresSummary: false,
+        }),
+        errorOnFail: false,
+    }));
+});
 /*
   WATCH TASK SECTION
 
@@ -70,8 +80,16 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
   // Run the link task when any JavaScript file changes
   gulp.watch(['./javascripts/**/*.js'], ['lint']);
+  gulp.watch(['./testing/**/*.js'], ['lint', 'specs']);
+  gulp.watch('./sass/**/*.sass', ['sassify']);
   gutil.log(gutil.colors.bgGreen('Watching for changes...'));
+});
+// Sassify section
+gulp.task('sassify', function () {
+  return gulp.src('./sass/**/*.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./css'));
 });
 
 // This task runs when you type `gulp` in the CLI
-gulp.task('default', ['lint', 'watch'], bundle);
+gulp.task('default', ['sassify', 'lint','specs', 'watch'], bundle);

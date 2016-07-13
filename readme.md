@@ -24,6 +24,6 @@ Click the "fork" button in the upper right-hand side of this repo on GitHub. You
 You will want to add the folder `node_modules` to your directory's `.gitignore` or to your global one if you have one. 
 
 This project uses:
-JQuery
-Browserfy
-gulp
++ JQuery
++ Browserfy
++ Gulp
