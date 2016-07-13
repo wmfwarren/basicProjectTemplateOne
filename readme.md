@@ -25,5 +25,7 @@ You will want to add the folder `node_modules` to your directory's `.gitignore` 
 
 This project uses:
 + JQuery
-+ Browserfy
+For development it uses:
++ Browserify
++ Sass
 + Gulp
