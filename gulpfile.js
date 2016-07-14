@@ -43,7 +43,7 @@ function bundle() {
     .pipe(buffer())
     // optional, remove if you dont want sourcemaps
     .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
-       // Add transformation tasks to the pipeline here.
+    // Add transformation tasks to the pipeline here.
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./dist'));
 }
@@ -59,17 +59,6 @@ gulp.task('lint', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .on('error', function() { });
-});
-
-// jasmine section
-gulp.task('specs', function() {
-  return gulp.src('./testing/specs/*.js')
-    .pipe(jasmine({
-        reporter: new jasmineSpecReporter({
-        displayFailuresSummary: false,
-        }),
-        errorOnFail: false,
-    }));
 });
 /*
   WATCH TASK SECTION
@@ -92,4 +81,4 @@ gulp.task('sassify', function () {
 });
 
 // This task runs when you type `gulp` in the CLI
-gulp.task('default', ['sassify', 'lint','specs', 'watch'], bundle);
+gulp.task('default', ['sassify', 'lint', 'browserify', 'watch'], bundle);
